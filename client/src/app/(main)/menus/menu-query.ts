@@ -17,11 +17,9 @@ type GetTeamsParams = {
   pagination: PaginationState;
 };
 export const useAddMenuMutation = () =>
-  useMutation((teamInput) => axios.post("menus", teamInput), {
+  useMutation((teamInput: any) => axios.post("menus", teamInput), {
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["menu", "tree"],
-      });
+      queryClient.invalidateQueries();
     },
   });
 

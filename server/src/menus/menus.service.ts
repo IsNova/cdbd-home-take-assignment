@@ -71,7 +71,11 @@ export class MenusService {
     const menu = await this.prisma.menu.findUnique({
       where: { id },
       include: {
-        submenu: true,
+        submenu: {
+          orderBy: {
+            depth: 'asc',
+          },
+        },
         parent: {
           select: {
             id: true,

@@ -35,7 +35,7 @@ export function Header({ setOpen }: HeaderProps) {
       <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch lg:gap-x-6">
         <h2 className="flex max-w-fit space-x-3 text-xl font-semibold tracking-tight">
           <div className="mx-auto h-8 w-8 items-center rounded-full bg-blue-700 text-white">
-            <MenuIcon className="h-6 w-6" />
+            <MenuIcon className="mx-auto h-6 w-6" />
           </div>
           <p>/ {header}</p>
         </h2>
