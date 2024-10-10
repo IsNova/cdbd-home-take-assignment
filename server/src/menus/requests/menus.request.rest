@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3030/api/v1/menus
+
+###Get All Menus
+GET {{baseUrl}}
+
+###Create a menu
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Finance",
+    "parentId":"cm21yugxk00036ddzdvr14apr"
+}
+
+###Get single menu
+GET {{baseUrl}}/cm21j4rtn0003uuxnx7pzv1b1
+
+
+###Get Hierarchy
+GET {{baseUrl}}
+
+
+###Delete Menu
+DELETE {{baseUrl}}/cm21j2wb30001uuxnq6x1r89a
+
+
+###Get tree
+GET {{baseUrl}}/tree/cm21izwfd0001tpglujy6anv5
+
+###Get Parents
+GET {{baseUrl}}/parents
+
+
