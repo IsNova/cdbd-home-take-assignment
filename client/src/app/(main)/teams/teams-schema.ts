@@ -7,4 +7,4 @@ export const teamSchema = z.object({
   name: z.string().min(2).max(20),
 });
 
-export type TeamInput = z.infer<typeof teamSchema>;
+export type TeamInput = z.infer<typeof teamSchema | any>;

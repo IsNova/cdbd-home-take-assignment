@@ -1,7 +1,7 @@
 "use client";
 
 import { Pencil, PlusIcon, Trash2 } from "lucide-react";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TreeNode = ({
   node,
@@ -12,13 +12,13 @@ const TreeNode = ({
 }: any) => {
   const [isExpanded, setIsExpanded] = useState(expandAll);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsExpanded(expandAll);
   }, [expandAll]);
 
-  const handleNodeClick = (e) => {
-    e.stopPropagation(); // Prevent the collapse from toggling when clicking buttons
-    onNodeClick(node.id); // Notify parent about the node click
+  const handleNodeClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    e.stopPropagation();
+    onNodeClick(node.id);
   };
 
   return (
@@ -64,7 +64,7 @@ const TreeNode = ({
         {node?.children && node.children.length > 0 && (
           <div className="relative ml-6">
             {isExpanded &&
-              node?.children.map((child, index) => (
+              node?.children.map((child: any, index: number) => (
                 <div className="relative" key={child.id}>
                   <div className="relative flex items-center">
                     <div className="absolute -left-3 -top-1 h-full w-[1px] bg-gray-300"></div>

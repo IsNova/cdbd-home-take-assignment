@@ -27,18 +27,19 @@ export function TeamForm({ data }: any) {
   const [open, setOpen] = useAtom(teamModalAtom);
   const isEditing = useAtomValue(editAtom);
 
+  const defaultValues = {
+    menuId: data?.id,
+    depth: data?.depth,
+    parent: data?.parent?.name,
+    name: data?.name,
+  };
   const form = useForm<TeamInput>({
-    defaultValues: {
-      menuId: data?.id,
-      depth: "",
-      parent: data?.parent?.id,
-      name: data?.name,
-    },
+    defaultValues,
     resolver: zodResolver(teamSchema),
   });
   useEffect(() => {
-    reset(data);
-  }, [data, isEditing]);
+    form.reset(defaultValues);
+  }, [defaultValues, isEditing]);
   const { mutate: addTeam, isLoading, reset } = useAddTeamMutation();
 
   const onSubmit = (values: TeamInput) => {
