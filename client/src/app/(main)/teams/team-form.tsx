@@ -15,32 +15,38 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { editAtom, teamModalAtom } from "@/store";
+import { actionAtom, editAtom, teamModalAtom } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useAddTeamMutation } from "./teams-query";
 import { TeamInput, teamSchema } from "./teams-schema";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export function TeamForm({ data }: any) {
   console.log("🚀 ~ TeamForm ~ data:", data);
   const [open, setOpen] = useAtom(teamModalAtom);
   const isEditing = useAtomValue(editAtom);
 
-  const defaultValues = {
-    menuId: data?.id,
-    depth: data?.depth,
-    parent: data?.parent?.name,
-    name: data?.name,
-  };
+  const defaultValues = useMemo(
+    () => ({
+      menuId: data?.id ?? "",
+      depth: data?.depth ?? "",
+      parent: data?.parent?.name ?? "",
+      name: data?.name ?? "",
+    }),
+    [data],
+  );
   const form = useForm<TeamInput>({
     defaultValues,
     resolver: zodResolver(teamSchema),
   });
   useEffect(() => {
     form.reset(defaultValues);
-  }, [defaultValues, isEditing]);
+  }, [defaultValues, isEditing, form]);
   const { mutate: addTeam, isLoading, reset } = useAddTeamMutation();
+
+  const editAction = useAtomValue(actionAtom);
+  console.log("🚀 ~ TeamForm ~ editAction:", editAction);
 
   const onSubmit = (values: TeamInput) => {
     addTeam(values, {
@@ -50,6 +56,8 @@ export function TeamForm({ data }: any) {
       },
     });
   };
+
+  const disabled = editAction === "edit";
   return (
     <Form {...form}>
       <form
@@ -63,7 +71,7 @@ export function TeamForm({ data }: any) {
             <FormItem className="">
               <FormLabel>MenuID</FormLabel>
               <FormControl>
-                <Input placeholder="Team name" {...field} />
+                <Input placeholder="Team name" {...field} disabled={disabled} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -76,7 +84,7 @@ export function TeamForm({ data }: any) {
             <FormItem className="">
               <FormLabel>Depth</FormLabel>
               <FormControl>
-                <Input placeholder="Team name" {...field} />
+                <Input placeholder="Team name" {...field} disabled={disabled} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -89,7 +97,7 @@ export function TeamForm({ data }: any) {
             <FormItem className="">
               <FormLabel>Parent</FormLabel>
               <FormControl>
-                <Input placeholder="Team name" {...field} />
+                <Input placeholder="Team name" {...field} disabled={disabled} />
               </FormControl>
               <FormMessage />
             </FormItem>

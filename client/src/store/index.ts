@@ -9,3 +9,4 @@ export const collapseSidebarAtom = atom(false);
 
 export const exportModalAtom = atom(false);
 export const editAtom = atom(false);
+export const actionAtom = atom("create");

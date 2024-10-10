@@ -10,31 +10,28 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGetMenuTreeQuery, useGetParentsQuery } from "./teams-query";
-import { useState } from "react";
-import { MenuItemsArray } from "@/types";
-import { TeamForm } from "./team-form";
+import { useState, useMemo } from "react";
 
 export default function TasksPage() {
   const { data: parents } = useGetParentsQuery();
-  console.log("🚀 ~ TasksPage ~ parents:", parents);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(parents?.[0]?.id);
+  const [selectedMenuItem, setSelectedMenuItem] = useState("");
   const handleChange = (value: string) => {
     setSelectedMenuItem(value);
   };
 
   const { data: treeData } = useGetMenuTreeQuery(selectedMenuItem ?? "");
-  console.log("🚀 ~ TasksPage ~ treeData:", treeData);
+  const memoizedTreeData = useMemo(() => treeData ?? [], [treeData]);
+
   return (
     <div>
       <div>
-        <Select value={selectedMenuItem} onValueChange={handleChange}>
+        <Select onValueChange={handleChange}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a menu" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Menus</SelectLabel>
-              {/* <SelectItem value="apple">Apple</SelectItem> */}
               {parents?.map((parent) => (
                 <SelectItem value={parent.id} key={parent.id}>
                   {parent.name}
@@ -45,7 +42,7 @@ export default function TasksPage() {
         </Select>
       </div>
       <div className="min-h-screen p-10">
-        <TreeView data={[treeData] ?? []} />
+        <TreeView data={[memoizedTreeData] ?? []} />
       </div>
     </div>
   );

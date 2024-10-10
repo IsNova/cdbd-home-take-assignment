@@ -35,6 +35,15 @@ export const useGetParentsQuery = () => {
   });
 };
 
+export const useDeleteMenuMutation = () =>
+  useMutation((menuId: string) => axiosInstance.delete(`menus/${menuId}`), {
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["tree"],
+      });
+    },
+  });
+
 export const useGetMenuTreeQuery = (parentId: string) => {
   return useQuery({
     queryKey: ["tree", parentId],

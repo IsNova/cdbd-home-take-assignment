@@ -1,7 +1,10 @@
 "use client";
 
+import { actionAtom } from "@/store";
+import { useAtom } from "jotai";
 import { Pencil, PlusIcon, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useDeleteMenuMutation } from "./teams-query";
 
 const TreeNode = ({
   node,
@@ -15,11 +18,15 @@ const TreeNode = ({
   useEffect(() => {
     setIsExpanded(expandAll);
   }, [expandAll]);
+  const [action, setAction] = useAtom(actionAtom);
 
   const handleNodeClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
     onNodeClick(node.id);
+    setAction("edit");
   };
+
+  const { mutate: deleteMenu } = useDeleteMenuMutation();
 
   return (
     <div className={`relative ${isFirstParent ? "pl-6" : "pl-12"}`}>
@@ -42,18 +49,14 @@ const TreeNode = ({
               <button
                 type="button"
                 className="rounded-full bg-indigo-600 p-1.5 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={() => setAction("add")}
               >
                 <PlusIcon aria-hidden="true" className="h-4 w-4" />
               </button>
               <button
                 type="button"
-                className="rounded-full bg-yellow-600 p-1.5 text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                <Pencil aria-hidden="true" className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
                 className="rounded-full bg-red-600 p-1.5 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={() => deleteMenu(node.id)}
               >
                 <Trash2 aria-hidden="true" className="h-4 w-4" />
               </button>

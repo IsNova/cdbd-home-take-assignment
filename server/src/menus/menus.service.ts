@@ -78,7 +78,9 @@ export class MenusService {
     if (!menu) {
       throw new NotFoundException('Menu not found');
     }
-    return this.buildNestedMenu(menu);
+    const nestedMenu = await this.buildNestedMenu(menu);
+
+    return nestedMenu;
   }
 
   private async buildNestedMenu(menu: any): Promise<any> {

@@ -16,17 +16,12 @@ export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
   const [expandAll, setExpandAll] = useState<boolean>(true);
   const [selectedNodeId, setSelectedNodeId] = useState(null);
 
-  const handleExpandAll = (): void => {
-    setExpandAll(true);
-  };
+  const handleExpandAll = () => setExpandAll(true);
 
-  const handleCollapseAll = (): void => {
-    setExpandAll(false);
-  };
+  const handleCollapseAll = () => setExpandAll(false);
 
-  const handleNodeClick = (id: any) => {
-    setSelectedNodeId((prevId) => (prevId === id ? null : id));
-  };
+  const handleNodeClick = (id: any) =>
+    setSelectedNodeId(id === selectedNodeId ? null : id);
 
   const { data: item } = useGetMenuItemQuery(selectedNodeId ?? "");
   console.log("🚀 ~ TreeView ~ item:", item);
