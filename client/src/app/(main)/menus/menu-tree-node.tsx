@@ -1,10 +1,10 @@
 "use client";
 
-import { actionAtom } from "@/store";
+import { actionAtom, defaultValuesAtom } from "@/store";
 import { useAtom } from "jotai";
 import { Pencil, PlusIcon, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useDeleteMenuMutation } from "./teams-query";
+import { useDeleteMenuMutation } from "./menu-query";
 
 const TreeNode = ({
   node,
@@ -19,11 +19,20 @@ const TreeNode = ({
     setIsExpanded(expandAll);
   }, [expandAll]);
   const [action, setAction] = useAtom(actionAtom);
+  const [defaultValue, setDefaultValue] = useAtom(defaultValuesAtom);
+  console.log("🚀 ~ defaultValue:", defaultValue);
 
   const handleNodeClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
     onNodeClick(node.id);
     setAction("edit");
+    setDefaultValue({
+      name: node?.name,
+      parent: node?.parent?.name,
+      depth: "",
+      menuId: node?.id,
+      parentId: node?.parent?.id,
+    });
   };
 
   const { mutate: deleteMenu } = useDeleteMenuMutation();
@@ -49,7 +58,16 @@ const TreeNode = ({
               <button
                 type="button"
                 className="rounded-full bg-indigo-600 p-1.5 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={() => setAction("add")}
+                onClick={() => {
+                  setDefaultValue({
+                    name: "",
+                    parent: node?.name,
+                    depth: "",
+                    menuId: "",
+                    parentId: node?.id,
+                  });
+                  setAction("add");
+                }}
               >
                 <PlusIcon aria-hidden="true" className="h-4 w-4" />
               </button>

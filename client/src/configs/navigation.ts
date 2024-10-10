@@ -15,12 +15,12 @@ export const navigation = [
   {
     name: "System Code",
     icon: LayoutDashboardIcon,
-    href: "/matches",
+    href: "/test",
   },
   {
     name: "Properties",
     icon: LayoutDashboardIcon,
-    href: "/teams",
+    href: "/test",
   },
   {
     name: "Menus",
@@ -30,7 +30,7 @@ export const navigation = [
   {
     name: "APIList",
     icon: LayoutDashboardIcon,
-    href: "/menus",
+    href: "/test",
   },
 ];
 

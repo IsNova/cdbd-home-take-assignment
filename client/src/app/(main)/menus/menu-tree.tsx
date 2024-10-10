@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import TreeNode from "./menu-tree-node";
-import { TeamForm } from "./team-form";
-import { useGetMenuItemQuery } from "./teams-query";
+import { TeamForm } from "./menu-form";
+import { useGetMenuItemQuery } from "./menu-query";
 
 /**
  * A component to render a tree view from a nested array of data.

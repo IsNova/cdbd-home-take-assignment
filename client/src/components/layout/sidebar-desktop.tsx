@@ -41,7 +41,7 @@ export function SidebarDesktop() {
           {isCollapsed ? (
             <Image
               src="/image.png"
-              alt="ethio telecom logo"
+              alt="logo"
               width={120}
               height={120}
               className="h-8 w-auto"
@@ -49,7 +49,7 @@ export function SidebarDesktop() {
           ) : (
             <Image
               src="/image.png"
-              alt="ethio telecom logo"
+              alt="logo"
               width={1200}
               height={1200}
               className="h-8 w-auto"
@@ -94,11 +94,11 @@ export function SidebarDesktop() {
               </ul>
             </li>
             <li>
-              {!isCollapsed && (
+              {/* {!isCollapsed && (
                 <div className="text-xs font-semibold leading-6 text-gray-400">
                   Adminstration
                 </div>
-              )}
+              )} */}
               <ul role="list" className="-mx-2 mb-4 mt-2 space-y-1">
                 {secondaryNavigation.map((item) => (
                   <li key={item.name}>

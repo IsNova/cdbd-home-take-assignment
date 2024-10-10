@@ -33,25 +33,13 @@ export function Header({ setOpen }: HeaderProps) {
       {/* Separator */}
       <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
       <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch lg:gap-x-6">
-        <h2 className="max-w-fit text-xl font-semibold tracking-tight">
-          {header}
+        <h2 className="flex max-w-fit space-x-3 text-xl font-semibold tracking-tight">
+          <div className="mx-auto h-8 w-8 items-center rounded-full bg-blue-700 text-white">
+            <MenuIcon className="h-6 w-6" />
+          </div>
+          <p>/ {header}</p>
         </h2>
-        <div className="flex flex-1 items-center justify-end gap-x-6 lg:gap-x-6">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-          >
-            <SearchIcon className="h-5 w-5" aria-hidden="true" />
-          </button>
-
-          {/* Separator */}
-          <div
-            className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
-            aria-hidden="true"
-          />
-          {/* Profile dropdown */}
-          <ProfileMenu />
-        </div>
+        <div className="flex flex-1 items-center justify-end gap-x-6 lg:gap-x-6"></div>
       </div>
     </div>
   );

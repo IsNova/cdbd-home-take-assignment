@@ -72,6 +72,12 @@ export class MenusService {
       where: { id },
       include: {
         submenu: true,
+        parent: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
 
@@ -83,6 +89,7 @@ export class MenusService {
     return nestedMenu;
   }
 
+  /*************  ✨ Codeium Command 🌟  *************/
   private async buildNestedMenu(menu: any): Promise<any> {
     const children = await Promise.all(
       menu.submenu.map(async (child: any) => {
@@ -91,6 +98,10 @@ export class MenusService {
           id: nestedChild.id,
           name: nestedChild.name,
           depth: nestedChild?.depth,
+          parent: {
+            id: nestedChild?.parent?.id,
+            name: nestedChild?.parent?.name,
+          },
           children: nestedChild.children || [],
         };
       }),
@@ -99,10 +110,15 @@ export class MenusService {
     return {
       id: menu.id,
       name: menu.name,
+      parent: {
+        id: menu?.parent?.id,
+        name: menu?.parent?.name,
+      },
       children,
     };
   }
 
+  /******  d6385223-2cf4-483d-9afa-84fcdd2d584d  *******/
   getParents() {
     return this.prisma.menu.findMany({
       where: {

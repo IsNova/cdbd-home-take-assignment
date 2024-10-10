@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useGetMenuTreeQuery, useGetParentsQuery } from "./teams-query";
+import { useGetMenuTreeQuery, useGetParentsQuery } from "./menu-query";
 import { useState, useMemo, useEffect } from "react";
 
 export default function TasksPage() {
