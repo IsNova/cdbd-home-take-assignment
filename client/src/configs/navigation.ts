@@ -3,32 +3,33 @@ import {
   LockIcon,
   ScaleIcon,
   Users2Icon,
+  Folder,
 } from "lucide-react";
 
 export const navigation = [
   {
     name: "System",
-    icon: LayoutDashboardIcon,
+    icon: Folder,
     href: "/dashboard",
   },
   {
     name: "System Code",
-    icon: ScaleIcon,
+    icon: LayoutDashboardIcon,
     href: "/matches",
   },
   {
     name: "Properties",
-    icon: Users2Icon,
+    icon: LayoutDashboardIcon,
     href: "/teams",
   },
   {
     name: "Menus",
-    icon: Users2Icon,
+    icon: LayoutDashboardIcon,
     href: "/menus",
   },
   {
     name: "APIList",
-    icon: Users2Icon,
+    icon: LayoutDashboardIcon,
     href: "/menus",
   },
 ];
@@ -36,12 +37,12 @@ export const navigation = [
 export const secondaryNavigation = [
   {
     name: "User and Group",
-    icon: Users2Icon,
+    icon: Folder,
     href: "/users",
   },
   {
     name: "Compitition",
-    icon: LockIcon,
+    icon: Folder,
     href: "/roles",
   },
 ];

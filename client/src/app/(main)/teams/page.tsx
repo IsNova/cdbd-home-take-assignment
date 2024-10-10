@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGetMenuTreeQuery, useGetParentsQuery } from "./teams-query";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 export default function TasksPage() {
   const { data: parents } = useGetParentsQuery();
@@ -19,13 +19,19 @@ export default function TasksPage() {
     setSelectedMenuItem(value);
   };
 
+  useEffect(() => {
+    if (parents && parents.length > 0 && !selectedMenuItem) {
+      setSelectedMenuItem(parents[0].id); // Set the first parent's id as default
+    }
+  }, [parents, selectedMenuItem]);
+
   const { data: treeData } = useGetMenuTreeQuery(selectedMenuItem ?? "");
   const memoizedTreeData = useMemo(() => treeData ?? [], [treeData]);
 
   return (
     <div>
       <div>
-        <Select onValueChange={handleChange}>
+        <Select onValueChange={handleChange} value={selectedMenuItem}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a menu" />
           </SelectTrigger>

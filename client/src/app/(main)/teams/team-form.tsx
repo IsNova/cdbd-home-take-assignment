@@ -64,32 +64,43 @@ export function TeamForm({ data }: any) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col space-y-2"
       >
-        <FormField
-          control={form.control}
-          name="menuId"
-          render={({ field }) => (
-            <FormItem className="">
-              <FormLabel>MenuID</FormLabel>
-              <FormControl>
-                <Input placeholder="Team name" {...field} disabled={disabled} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="depth"
-          render={({ field }) => (
-            <FormItem className="">
-              <FormLabel>Depth</FormLabel>
-              <FormControl>
-                <Input placeholder="Team name" {...field} disabled={disabled} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {editAction === "add" ? (
+          <></>
+        ) : (
+          <>
+            <FormField
+              control={form.control}
+              name="menuId"
+              render={({ field }) => (
+                <FormItem className="">
+                  <FormLabel>MenuID</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="menu id"
+                      {...field}
+                      disabled={disabled}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="depth"
+              render={({ field }) => (
+                <FormItem className="">
+                  <FormLabel>Depth</FormLabel>
+                  <FormControl>
+                    <Input placeholder="depth" {...field} disabled={disabled} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </>
+        )}
+
         <FormField
           control={form.control}
           name="parent"
@@ -97,7 +108,7 @@ export function TeamForm({ data }: any) {
             <FormItem className="">
               <FormLabel>Parent</FormLabel>
               <FormControl>
-                <Input placeholder="Team name" {...field} disabled={disabled} />
+                <Input placeholder="parent" {...field} disabled={disabled} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -110,7 +121,7 @@ export function TeamForm({ data }: any) {
             <FormItem className="">
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Team name" {...field} />
+                <Input placeholder="name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

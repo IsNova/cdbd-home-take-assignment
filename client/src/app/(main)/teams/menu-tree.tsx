@@ -28,8 +28,8 @@ export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
 
   return (
     <div className="flex justify-between">
-      <div className="">
-        <div className="mb-4 flex justify-between">
+      <div className="w-full">
+        <div className="static mb-4 flex w-full justify-start space-x-8">
           <Button
             variant="outline"
             onClick={handleExpandAll}
