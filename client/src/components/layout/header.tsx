@@ -35,9 +35,9 @@ export function Header({ setOpen }: HeaderProps) {
       <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch lg:gap-x-6">
         <h2 className="flex max-w-fit space-x-3 text-xl font-semibold tracking-tight">
           <div>
-            <FolderClosed className="h-6 w-6" />
+            <FolderClosed className="h-4 w-4" />
           </div>
-          <p>/ {header}</p>
+          <p className="text-sm "> / {header}</p>
         </h2>
         <div className="flex flex-1 items-center justify-end gap-x-6 lg:gap-x-6"></div>
       </div>

@@ -34,11 +34,15 @@ export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
           <Button
             variant="outline"
             onClick={handleExpandAll}
-            className="rounded bg-gray-700 px-3 py-1 text-white"
+            className="rounded-full bg-gray-900 px-4 py-1 text-sm text-white"
           >
             Expand All
           </Button>
-          <Button onClick={handleCollapseAll} variant="outline">
+          <Button
+            onClick={handleCollapseAll}
+            variant="outline"
+            className="rounded-full px-4 py-1 text-sm"
+          >
             Collapse All
           </Button>
         </div>

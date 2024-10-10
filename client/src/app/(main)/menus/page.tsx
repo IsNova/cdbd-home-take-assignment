@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { useGetMenuTreeQuery, useGetParentsQuery } from "./menu-query";
 import { useState, useMemo, useEffect } from "react";
+import { LayoutDashboard, Settings } from "lucide-react";
 
 export default function TasksPage() {
   const { data: parents } = useGetParentsQuery();
@@ -30,7 +31,14 @@ export default function TasksPage() {
 
   return (
     <div>
+      <div className="mb-4 flex w-24 items-center justify-between space-x-4">
+        <div className="flex items-center  justify-center rounded-full bg-blue-500 p-2">
+          <LayoutDashboard fill="white" strokeWidth={0} className="h-6 w-6" />
+        </div>
+        <p className="text-3xl font-extrabold">Menus</p>
+      </div>
       <div>
+        <div className="py-1 text-[0.8rem] text-muted-foreground">Menu</div>
         <Select onValueChange={handleChange} value={selectedMenuItem}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a menu" />
