@@ -24,7 +24,6 @@ import { useEffect, useMemo } from "react";
 
 export function TeamForm({ data }: any) {
   console.log("🚀 ~ TeamForm ~ data:", data);
-  const [open, setOpen] = useAtom(teamModalAtom);
   const isEditing = useAtomValue(editAtom);
 
   const defaultValues = useMemo(
@@ -46,12 +45,10 @@ export function TeamForm({ data }: any) {
   const { mutate: addTeam, isLoading, reset } = useAddTeamMutation();
 
   const editAction = useAtomValue(actionAtom);
-  console.log("🚀 ~ TeamForm ~ editAction:", editAction);
 
   const onSubmit = (values: TeamInput) => {
     addTeam(values, {
       onSuccess: () => {
-        setOpen(false);
         reset();
       },
     });

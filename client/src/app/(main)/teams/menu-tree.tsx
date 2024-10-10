@@ -24,7 +24,8 @@ export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
     setSelectedNodeId(id === selectedNodeId ? null : id);
 
   const { data: item } = useGetMenuItemQuery(selectedNodeId ?? "");
-  console.log("🚀 ~ TreeView ~ item:", item);
+
+  const formDefaultValue = item;
 
   return (
     <div className="flex justify-between">
@@ -55,7 +56,7 @@ export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
       </div>
 
       <div>
-        <TeamForm data={item} />
+        <TeamForm data={formDefaultValue} />
       </div>
     </div>
   );
