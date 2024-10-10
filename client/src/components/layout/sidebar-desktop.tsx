@@ -22,7 +22,7 @@ export function SidebarDesktop() {
     >
       {/* Collapse button */}
       <button
-        className="absolute -right-3 top-12 hidden rounded-full  bg-primary p-1 group-hover:block"
+        className="absolute right-4 top-4 hidden rounded-full  bg-primary p-1 group-hover:block"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         {isCollapsed ? (
@@ -57,9 +57,12 @@ export function SidebarDesktop() {
           )}
         </div>
         <nav className="flex flex-1 flex-col">
-          <ul role="list" className="flex flex-1 flex-col gap-y-6">
+          <ul role="list" className="flex flex-1 flex-col gap-y-6 ">
             <li>
-              <ul role="list" className="-mx-2 space-y-1">
+              <ul
+                role="list"
+                className="-mx-2 space-y-1 rounded-md bg-gray-800 py-4"
+              >
                 {navigation.map((item) => {
                   const isCurrent = pathname.startsWith(item.href);
                   return (
@@ -80,10 +83,10 @@ export function SidebarDesktop() {
                       >
                         <item.icon
                           className={cn(
-                            "mr-2 h-4 w-4 text-gray-700",
+                            "text-gray-5s00 mr-2 h-4 w-4",
                             isCurrent
                               ? "text-primary-foreground"
-                              : "text-gray-700 group-hover/item:text-primary-foreground",
+                              : "text-gray-500 group-hover/item:text-primary-foreground",
                           )}
                         />
                         {!isCollapsed && item.name}
@@ -115,7 +118,7 @@ export function SidebarDesktop() {
                         isCollapsed ? "pl-2" : "w-full justify-start",
                       )}
                     >
-                      <item.icon className="mr-2 h-4 w-4 text-gray-700" />
+                      <item.icon className="mr-2 h-4 w-4 text-gray-500" />
                       {!isCollapsed && item.name}
                     </Link>
                   </li>
