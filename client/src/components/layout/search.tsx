@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Input } from '@/components/ui/input';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { Input } from "@/components/ui/input";
 
 export default function Search() {
   return (
