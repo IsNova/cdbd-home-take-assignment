@@ -41,7 +41,7 @@ export const secondaryNavigation = [
     href: "/users",
   },
   {
-    name: "Compitition",
+    name: "Competition",
     icon: Folder,
     href: "/roles",
   },
