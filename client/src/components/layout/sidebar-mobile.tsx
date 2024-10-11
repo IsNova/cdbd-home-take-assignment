@@ -77,8 +77,8 @@ export function SidebarMobile({ open, setOpen }: SidebarMobileProps) {
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
                   <Image
-                    src="/et-logo-text.png"
-                    alt="ethio telecom logo"
+                    src="/image.png"
+                    alt="logo"
                     width={1200}
                     height={1200}
                     className="h-8 w-auto"
