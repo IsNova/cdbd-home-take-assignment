@@ -18,7 +18,6 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 
 import { labels } from "./data";
-import { teamSchema } from "@/app/(main)/menus/menu-schema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
