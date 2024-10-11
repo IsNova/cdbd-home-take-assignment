@@ -8,56 +8,68 @@ import { useGetMenuItemQuery } from "./menu-query";
 /**
  * A component to render a tree view from a nested array of data.
  *
- * @param {TreeViewProps} props
- * @param {TreeNode[]} props.data
+ * @param {{ data: TreeNode[]; parents?: string[] }} props
  * @returns {JSX.Element}
  */
-export const TreeView = ({ data }: TreeViewProps): JSX.Element => {
+export const TreeView = ({
+  data,
+  parents = [],
+}: {
+  data: TreeNode[];
+  parents?: string[] | any;
+}): JSX.Element => {
   const [expandAll, setExpandAll] = useState<boolean>(true);
-  const [selectedNodeId, setSelectedNodeId] = useState(null);
+
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
   const handleExpandAll = () => setExpandAll(true);
 
   const handleCollapseAll = () => setExpandAll(false);
 
-  const handleNodeClick = (id: any) =>
+  const handleNodeClick = (id: string | null) =>
     setSelectedNodeId(id === selectedNodeId ? null : id);
 
   const { data: item } = useGetMenuItemQuery(selectedNodeId ?? "");
 
-  const formDefaultValue = item;
+  const formDefaultValue: TreeNode | undefined = item;
 
   return (
-    <div className="flex justify-between">
-      <div className="w-full">
-        <div className="static mb-4 flex w-full justify-start space-x-8">
-          <Button
-            variant="outline"
-            onClick={handleExpandAll}
-            className="rounded-full bg-gray-900 px-4 py-1 text-sm text-white"
-          >
-            Expand All
-          </Button>
-          <Button
-            onClick={handleCollapseAll}
-            variant="outline"
-            className="rounded-full px-4 py-1 text-sm"
-          >
-            Collapse All
-          </Button>
-        </div>
+    <div className="flex flex-col justify-start md:flex-row ">
+      {parents?.length ? (
+        <div className="">
+          <div className="static mb-4 flex w-full justify-start space-x-8">
+            <Button
+              variant="outline"
+              onClick={handleExpandAll}
+              className="rounded-full bg-gray-900 px-4 py-1 text-sm text-white"
+            >
+              Expand All
+            </Button>
+            <Button
+              onClick={handleCollapseAll}
+              variant="outline"
+              className="rounded-full px-4 py-1 text-sm"
+            >
+              Collapse All
+            </Button>
+          </div>
 
-        {data?.map((node, index) => (
-          <TreeNode
-            key={node?.id}
-            node={node}
-            expandAll={expandAll}
-            isFirstParent={index === 0}
-            selectedNodeId={selectedNodeId}
-            onNodeClick={handleNodeClick}
-          />
-        ))}
-      </div>
+          {data?.map((node, index) => (
+            <TreeNode
+              key={node.id}
+              node={node}
+              expandAll={expandAll}
+              isFirstParent={index === 0}
+              selectedNodeId={selectedNodeId}
+              onNodeClick={handleNodeClick}
+            />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <>Please add at least one root element</>
+        </div>
+      )}
 
       <div>
         <TeamForm data={formDefaultValue} />
