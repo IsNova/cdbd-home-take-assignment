@@ -38,7 +38,7 @@ const TreeNode = ({
   const { mutate: deleteMenu } = useDeleteMenuMutation();
 
   return (
-    <div className={`relative ${isFirstParent ? "pl-6" : "pl-12"}`}>
+    <div className={`relative ${isFirstParent ? "pl-0" : "pl-4"}`}>
       <div className="relative">
         <div className="flex items-center space-y-2">
           <div className="relative">
@@ -50,7 +50,7 @@ const TreeNode = ({
             </button>
           </div>
 
-          <span className="text-gray-800" onClick={handleNodeClick}>
+          <span className="text-sm text-gray-800" onClick={handleNodeClick}>
             {node?.name}
           </span>
           {selectedNodeId === node?.id && (
@@ -89,7 +89,7 @@ const TreeNode = ({
                 <div className="relative" key={child.id}>
                   <div className="relative flex items-center">
                     <div className="absolute -left-3 -top-1 h-full w-[1px] bg-gray-300"></div>
-                    <div className="absolute -left-2 top-4 h-[1px] w-16 bg-gray-300"></div>
+                    <div className="absolute -left-2 top-4 h-[1px] w-6 bg-gray-300"></div>
                     <TreeNode
                       node={child}
                       expandAll={expandAll}

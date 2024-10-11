@@ -55,7 +55,7 @@ export default function TasksPage() {
           </SelectContent>
         </Select>
       </div>
-      <div className="min-h-screen p-10">
+      <div className="min-h-screen pt-8">
         <TreeView data={[memoizedTreeData]} parents={parents} />
       </div>
     </div>

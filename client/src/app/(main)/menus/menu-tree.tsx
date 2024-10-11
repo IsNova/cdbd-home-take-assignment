@@ -34,42 +34,44 @@ export const TreeView = ({
   const formDefaultValue: TreeNode | undefined = item;
 
   return (
-    <div className="flex flex-col justify-start md:flex-row ">
-      {parents?.length ? (
-        <div className="">
-          <div className="static mb-4 flex w-full justify-start space-x-8">
-            <Button
-              variant="outline"
-              onClick={handleExpandAll}
-              className="rounded-full bg-gray-900 px-4 py-1 text-sm text-white"
-            >
-              Expand All
-            </Button>
-            <Button
-              onClick={handleCollapseAll}
-              variant="outline"
-              className="rounded-full px-4 py-1 text-sm"
-            >
-              Collapse All
-            </Button>
-          </div>
+    <div className="flex flex-col justify-start space-y-24 md:flex-row md:space-x-24 md:space-y-0">
+      <div>
+        {parents?.length ? (
+          <div className="">
+            <div className="static mb-4 flex w-full justify-start space-x-2">
+              <Button
+                variant="outline"
+                onClick={handleExpandAll}
+                className="rounded-full bg-gray-900 px-4 py-1 text-xs text-white"
+              >
+                Expand All
+              </Button>
+              <Button
+                onClick={handleCollapseAll}
+                variant="outline"
+                className="rounded-full px-4 py-1 text-xs"
+              >
+                Collapse All
+              </Button>
+            </div>
 
-          {data?.map((node, index) => (
-            <TreeNode
-              key={node.id}
-              node={node}
-              expandAll={expandAll}
-              isFirstParent={index === 0}
-              selectedNodeId={selectedNodeId}
-              onNodeClick={handleNodeClick}
-            />
-          ))}
-        </div>
-      ) : (
-        <div>
-          <>Please add at least one root element</>
-        </div>
-      )}
+            {data?.map((node, index) => (
+              <TreeNode
+                key={node.id}
+                node={node}
+                expandAll={expandAll}
+                isFirstParent={index === 0}
+                selectedNodeId={selectedNodeId}
+                onNodeClick={handleNodeClick}
+              />
+            ))}
+          </div>
+        ) : (
+          <div>
+            <>Please add at least one root element</>
+          </div>
+        )}
+      </div>
 
       <div>
         <TeamForm data={formDefaultValue} />
