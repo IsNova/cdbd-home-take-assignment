@@ -86,10 +86,12 @@ export function SidebarDesktop() {
                             "text-gray-5s00 mr-2 h-4 w-4",
                             isCurrent
                               ? "text-primary-foreground"
-                              : "text-gray-500 group-hover/item:text-primary-foreground",
+                              : "text-gray-300 group-hover/item:text-primary-foreground",
                           )}
                         />
-                        {!isCollapsed && item.name}
+                        <p className="text-gray-400">
+                          {!isCollapsed && item.name}
+                        </p>
                       </Link>
                     </li>
                   );
@@ -118,8 +120,10 @@ export function SidebarDesktop() {
                         isCollapsed ? "pl-2" : "w-full justify-start",
                       )}
                     >
-                      <item.icon className="mr-2 h-4 w-4 text-gray-500" />
-                      {!isCollapsed && item.name}
+                      <item.icon className="mr-2 h-4 w-4 text-gray-300" />
+                      <p className="text-gray-400">
+                        {!isCollapsed && item.name}
+                      </p>
                     </Link>
                   </li>
                 ))}
