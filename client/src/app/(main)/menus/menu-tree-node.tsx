@@ -20,7 +20,7 @@ const TreeNode = ({
   }, [expandAll]);
   const [action, setAction] = useAtom(actionAtom);
   const [defaultValue, setDefaultValue] = useAtom(defaultValuesAtom);
-  console.log("🚀 ~ defaultValue:", defaultValue);
+  console.log("🚀 ~ node:", node);
 
   const handleNodeClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
@@ -29,7 +29,7 @@ const TreeNode = ({
     setDefaultValue({
       name: node?.name,
       parent: node?.parent?.name,
-      depth: "",
+      depth: node?.depth,
       menuId: node?.id,
       parentId: node?.parent?.id,
     });
