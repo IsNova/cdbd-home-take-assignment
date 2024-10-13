@@ -8,8 +8,8 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-    "name": "Finance",
-    "parentId":"cm21yugxk00036ddzdvr14apr"
+    "name": "Shadlow",
+    "parentId":"cm21j0lcv0003tpglaozdephk"
 }
 
 ###Get single menu
@@ -29,5 +29,13 @@ GET {{baseUrl}}/tree/cm21izwfd0001tpglujy6anv5
 
 ###Get Parents
 GET {{baseUrl}}/parents
+
+###Update node
+PATCH {{baseUrl}}/cm24wxwnt0005nnj6ln1uigt9
+Content-Type: : application/json
+
+{
+    "name": "Some other child"
+}
 
 

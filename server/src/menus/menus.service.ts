@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateMenuDto } from './dto/create-menu.dto';
 
 @Injectable()
 export class MenusService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createMenuDto: any) {
+  async create(createMenuDto: CreateMenuDto) {
     let depth = 0;
 
     if (createMenuDto.parentId) {
@@ -59,8 +60,16 @@ export class MenusService {
     });
   }
 
-  update(id: number, updateMenuDto: UpdateMenuDto) {
-    return `This action updates a #${id} menu`;
+  update(id: string, updateMenuDto: UpdateMenuDto) {
+    console.log('🚀 ~ MenusService ~ update ~ updateMenuDto:', updateMenuDto);
+    return this.prisma.menu.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...updateMenuDto,
+      },
+    });
   }
 
   remove(id: string) {
@@ -93,7 +102,6 @@ export class MenusService {
     return nestedMenu;
   }
 
-  /*************  ✨ Codeium Command 🌟  *************/
   private async buildNestedMenu(menu: any): Promise<any> {
     const children = await Promise.all(
       menu.submenu.map(async (child: any) => {
@@ -114,6 +122,7 @@ export class MenusService {
     return {
       id: menu.id,
       name: menu.name,
+      depth: menu?.depth,
       parent: {
         id: menu?.parent?.id,
         name: menu?.parent?.name,
@@ -122,7 +131,6 @@ export class MenusService {
     };
   }
 
-  /******  d6385223-2cf4-483d-9afa-84fcdd2d584d  *******/
   getParents() {
     return this.prisma.menu.findMany({
       where: {

@@ -17,10 +17,6 @@ export class MenusController {
 
   @Post()
   create(@Body() createMenuDto: CreateMenuDto) {
-    console.log(
-      '🚀 ~ MenusController ~ create ~ createMenuDto:',
-      createMenuDto,
-    );
     return this.menusService.create(createMenuDto);
   }
 
@@ -45,7 +41,7 @@ export class MenusController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMenuDto: UpdateMenuDto) {
-    return this.menusService.update(+id, updateMenuDto);
+    return this.menusService.update(id, updateMenuDto);
   }
 
   @Delete(':id')
